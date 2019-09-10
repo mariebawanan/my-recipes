@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 import * as fontFamilies from './fonts';
 
+import theme from './theme';
+const { colors, fontSizes } = theme;
+
 
 const GlobalStyle = createGlobalStyle`
 
@@ -34,6 +37,22 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 700;
     font-style: italic;
     font-display: block;
+  }
+
+  html {
+    box-sizing: border-box;
+    margin:0;
+  }
+  
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: ${colors.lightGrey};
+    color: ${colors.black};
+    font-family: 'ProductSans';
+    font-size: ${fontSizes.small};
+    line-height 1.5rem;
+    overflow-x: hidden;
   }
 
 `
