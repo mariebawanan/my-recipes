@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import theme from '../../styles/theme'
 import mixins from '../../styles/mixins'
@@ -33,8 +34,8 @@ const Image = styled.img`
 `
 
 const DetailsContainer = styled.div`
-  padding: 15px 15px 50px;
-  h4 {
+  padding: 15px 50px 50px;
+  h2 {
     ${mixins.header}
   }
   p {
@@ -65,46 +66,32 @@ const TimeDetails = styled.div`
 `
 const MainContainer = styled.div`
   display: grid
-  width: 80%;
+  width: 70%;
   .label {
-    color: ${colors.grey}
-    font-style: italic
+    ${mixins.label}
   }
   ${media.large`
     width: 80%;
   `}
-  ${media.medium`
-    width: 90%;
-  `}
 `
 
-const ViewButton = styled.button`
-  width: 50%
-  height: 50px
-  color: ${colors.white} 
-  background-color: ${colors.orange}
-  text-transform: uppercase;
-  font-size: 1rem
-  justify-self: flex-end
-  margin-top: -25px
-  paddin-top: 20px
-  margin-right: 40px
-  font-weight: 700
-  transition: all 0.3s ease 0s;
-  &:hover {
-    background-color: ${colors.orange};
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-    color: #fff;
-    transform: translateX(7px);
-  }
+const ViewButton = styled(Link)`
+    
+    justify-self: flex-end
+    margin-top: -25px
+    margin-right: 40px
+    justify-items: center
+    
+    ${media.medium`
+      justify-self: center;
+      margin-right: 0
+    `}
 
-  ${media.medium`
-    justify-self: center;
-    margin-right: 0
-  `}
+    ${mixins.button}
 `
 
 const RecipeItem = ({recipe}) => {
+
   return(
     <MainContainer>
     <DateContainer>
@@ -114,7 +101,7 @@ const RecipeItem = ({recipe}) => {
     <RecipeContainer>
       <Image src={recipe.images.medium} />
       <DetailsContainer>
-        <h4>{recipe.title}</h4>
+        <h2>{recipe.title}</h2>
         <p>{recipe.description}</p>
         <TimeDetails>
           <p><span className="label">Prep: </span>{recipe.prepTime} mins</p>
@@ -122,7 +109,7 @@ const RecipeItem = ({recipe}) => {
         </TimeDetails>
       </DetailsContainer>
     </RecipeContainer>
-    <ViewButton>View Recipe</ViewButton>
+    <ViewButton to={`/recipe/${recipe.uuid}`}>View Recipe</ViewButton>
     </MainContainer>
   )
 }

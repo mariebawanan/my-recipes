@@ -6,7 +6,7 @@ import Recipes from '../src/components/Recipes/recipeItem'
 import Recipe from '../src/components/Recipes/recipe'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 
-const routing = (
+ReactDOM.render(
   <Router>
     <Switch>
       <Route exact path="/" component={Home} />
@@ -14,6 +14,4 @@ const routing = (
       <Route path="/recipe/:id" component={Recipe} />
     </Switch>
   </Router>
-)
-
-ReactDOM.render(routing, document.getElementById('root'))
+,document.getElementById('root'))

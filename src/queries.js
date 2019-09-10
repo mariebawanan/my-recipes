@@ -10,7 +10,8 @@ const getAllSpecials = () => {
 }
 
 const getRecipe = (id) => {
-  console.log("getRecipe")
+  if(id !== undefined)
+    return axios.get(`http://localhost:3001/recipes/${id}`);
 }
 
 const getSpecial = (id) => {
