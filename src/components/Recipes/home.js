@@ -5,6 +5,7 @@ import { getAllRecipes } from '../../queries'
 import styled from 'styled-components';
 import media from '../../styles/media'
 
+
 const RecipeListContainer = styled.div`
   display: grid;
   justify-items: center
@@ -16,6 +17,8 @@ const RecipeListContainer = styled.div`
     justify-content: center
   `}
 
+
+  
 `
 
 class Home extends Component {

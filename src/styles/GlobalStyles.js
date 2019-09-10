@@ -53,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${fontSizes.small};
     line-height 1.5rem;
     overflow-x: hidden;
+
   }
 
 `

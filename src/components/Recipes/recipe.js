@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import theme from '../../styles/theme'
 import mixins from '../../styles/mixins'
+import media from '../../styles/media'
 import time from '../../icons/time.svg'
 
 const { colors, fontSizes } = theme;
@@ -9,12 +10,22 @@ const { colors, fontSizes } = theme;
 const RecipeContainer = styled.div`
   display: grid
   border: 1px solid ${colors.orange}
+  background-color: ${colors.lightGrey}
+
+  ${media.medium`
+    justify-items: center;
+    text-align: center;
+  `}
 `
 
 const DateContainer = styled.div`
   display: flex
   justify-content: space-between
-  font-size: ${fontSizes.tiny}
+  font-size: ${fontSizes.small}
+
+  ${media.medium`
+    font-size: ${fontSizes.tiny}
+  `}
 `
 
 const Image = styled.img`
@@ -29,11 +40,11 @@ const DetailsContainer = styled.div`
   p {
     font-style: italic
   }
+
 `
 
 const TimeDetails = styled.div`
   display: flex;
-
   p {
     margin-right: 40px
     .label:before {
@@ -47,14 +58,24 @@ const TimeDetails = styled.div`
     }
   }
 
+  ${media.medium`
+    flex-direction: column;
+  `}
+
 `
 const MainContainer = styled.div`
   display: grid
-  width: 400px;
+  width: 80%;
   .label {
     color: ${colors.grey}
     font-style: italic
   }
+  ${media.large`
+    width: 80%;
+  `}
+  ${media.medium`
+    width: 90%;
+  `}
 `
 
 const ViewButton = styled.button`
@@ -76,14 +97,19 @@ const ViewButton = styled.button`
     color: #fff;
     transform: translateX(7px);
   }
+
+  ${media.medium`
+    justify-self: center;
+    margin-right: 0
+  `}
 `
 
 const Recipe = ({recipe}) => {
   return(
     <MainContainer>
     <DateContainer>
-      <p><span class="label">Posted: </span>{recipe.postDate}</p>
-      <p><span class="label">Edited: </span>{recipe.editDate}</p>
+      <p><span className="label">Posted: </span>{recipe.postDate}</p>
+      <p><span className="label">Edited: </span>{recipe.editDate}</p>
     </DateContainer>
     <RecipeContainer>
       <Image src={recipe.images.medium} />
@@ -91,8 +117,8 @@ const Recipe = ({recipe}) => {
         <h4>{recipe.title}</h4>
         <p>{recipe.description}</p>
         <TimeDetails>
-          <p><span class="label">Prep: </span>{recipe.prepTime} mins</p>
-          <p><span class="label">Cook: </span>{recipe.cookTime} mins</p>
+          <p><span className="label">Prep: </span>{recipe.prepTime} mins</p>
+          <p><span className="label">Cook: </span>{recipe.cookTime} mins</p>
         </TimeDetails>
       </DetailsContainer>
     </RecipeContainer>
