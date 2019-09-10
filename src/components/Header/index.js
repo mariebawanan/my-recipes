@@ -7,7 +7,8 @@ const {colors} = theme
 
 const HeaderContainer = styled.div`
   display: flex
-  margin: 3rem 10rem
+  justify-content: center 
+  margin: 3rem auto
   h1 {
     span {
       color: ${colors.orange}

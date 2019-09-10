@@ -14,7 +14,7 @@ const RecipeContainer = styled.div`
 const DateContainer = styled.div`
   display: flex
   justify-content: space-between
-  font-size: ${fontSizes.small}
+  font-size: ${fontSizes.tiny}
 `
 
 const Image = styled.img`
@@ -26,7 +26,9 @@ const DetailsContainer = styled.div`
   h4 {
     ${mixins.header}
   }
-
+  p {
+    font-style: italic
+  }
 `
 
 const TimeDetails = styled.div`
@@ -80,8 +82,8 @@ const Recipe = ({recipe}) => {
   return(
     <MainContainer>
     <DateContainer>
-      <p><span class="label">Posted: </span>Jan 5, 2019</p>
-      <p><span class="label">Edited: </span>Jan 5, 2019</p>
+      <p><span class="label">Posted: </span>{recipe.postDate}</p>
+      <p><span class="label">Edited: </span>{recipe.editDate}</p>
     </DateContainer>
     <RecipeContainer>
       <Image src={recipe.images.medium} />
@@ -89,8 +91,8 @@ const Recipe = ({recipe}) => {
         <h4>{recipe.title}</h4>
         <p>{recipe.description}</p>
         <TimeDetails>
-          <p><span class="label">Prep: </span>5</p>
-          <p><span class="label">Cook: </span>10</p>
+          <p><span class="label">Prep: </span>{recipe.prepTime} mins</p>
+          <p><span class="label">Cook: </span>{recipe.cookTime} mins</p>
         </TimeDetails>
       </DetailsContainer>
     </RecipeContainer>
