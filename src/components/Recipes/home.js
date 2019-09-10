@@ -6,8 +6,13 @@ import styled from 'styled-components';
 
 const RecipeListContainer = styled.div`
   display: grid;
-`
-
+  justify-items: center
+  width: 90vw
+  margin: 4rem auto
+  grid-template-columns: 50% 50%;
+  grid-row-gap: 4rem
+  justify-content: space-around
+  `
 
 class Home extends Component {
 

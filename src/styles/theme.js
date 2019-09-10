@@ -4,7 +4,8 @@ const theme = {
     lightGrey: '#f5f5f5',
     grey: '#73706e',
     orange: '#da7340',
-    black: '#090401'
+    black: '#090401',
+    white: '#ffffff'
   },
 
   fontSizes: {
@@ -17,7 +18,7 @@ const theme = {
   fonts: {
     ProductSans: 'ProductSans'
   }
-  
+
 };
 
 export default theme;
