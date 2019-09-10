@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { getRecipe } from '../../queries'
 import mixins from '../../styles/mixins'
 import theme from '../../styles/theme'
+import media from '../../styles/media'
 import { Link } from 'react-router-dom'
 import bgBody from '../../assets/bg-body.jpg'
 
@@ -13,16 +14,25 @@ const RecipeContainer = styled.div`
   grid-auto-flow: column
   justify-items: center
   grid-row-gap: 2rem
+
+  ${media.large`
+    grid-auto-flow: row
+  `}
 `
 const Image = styled.img`
-  
+  justify-self: flex-start
+  width: 80%
+
+  ${media.large`
+    width: 100%
+  `}
 ` 
 
 const Details = styled.div`
   display: flex
   flex-direction: column
-  justify-self: flex-start
-  width: 90%
+  justify-self: center
+  width: 100%
   h1 {
     ${mixins.header}
     margin-bottom: 0
@@ -31,6 +41,10 @@ const Details = styled.div`
   p {
     font-style: italic
   }
+
+  ${media.medium`
+    text-align: center
+  `}
 `
 
 const BackButton = styled(Link)`
@@ -57,6 +71,12 @@ const MainContainer = styled.div`
     z-index: -2;
     opacity: 0.1
   }
+
+  ${media.medium`
+    margin: 3em 1em
+    width: 90%
+
+  `}
 `
 
 const Misc = styled.div`
@@ -72,19 +92,30 @@ const Misc = styled.div`
 const Steps = styled.div`
   display: grid
   grid-auto-flow: column
-  grid-template-columns: 30% 60%
-  justify-content: space-around
+  grid-template-columns: 40% 50%
+  justify-content: space-between
+
+  ${media.large`
+    grid-auto-flow: row
+    grid-template-columns: 100%
+    justify-content: space-center 
+    grid-row-gap: 2rem
+  `}
 `
 
 const List = styled.ul`
   li {
-    list-style-type: none
     line-height: 1.8
   }
 `
 const OList = styled.ol`
   li {
     line-height: 1.8
+
+    span {
+      font-style: italic
+      font-weight: bold
+    }
   }
 `
 const Label = styled.div`
@@ -96,8 +127,7 @@ const Label = styled.div`
   text-align: center
   font-size: 1.25em
 `
-const Section = styled.div`
-  display: grid
+const Section = styled.div` 
 `
 
 class Recipe extends Component {
@@ -117,13 +147,13 @@ class Recipe extends Component {
 
 
    displayIngredients = ingredients => 
-    ingredients.map(ing => 
-      <li>{`${ing.amount} ${ing.measurement} ${ing.name}`} </li> 
+    ingredients.map((ing, i) => 
+      <li key={i}>{`${ing.amount} ${ing.measurement} ${ing.name}`} </li> 
     )
 
    displayDirections = directions => 
-    directions.map(dir => 
-      <li>{`${dir.instructions}`} </li> 
+    directions.map((dir, i) => 
+      <li key={i}><span>{`${dir.optional ? '*Optional*': ''}`}</span> {dir.instructions}</li> 
     )
 
   render() {
@@ -135,16 +165,16 @@ class Recipe extends Component {
           <MainContainer>
             <BackButton to="/">Back to home</BackButton>
             <RecipeContainer>
-            <Image src={recipe.images.medium} />
-            <Details>
-              <h1>{recipe.title}</h1>
-              <h3>{recipe.description}</h3>
-              <Misc>
-                <p><span className="label">Servings: </span>{recipe.servings}</p>
-                <p><span className="label">Prep: </span>{recipe.prepTime} mins</p>
-                <p><span className="label">Cook: </span>{recipe.cookTime} mins</p>
-              </Misc>
-            </Details>
+              <Image src={recipe.images.medium} />
+              <Details>
+                <h1>{recipe.title}</h1>
+                <h3>{recipe.description}</h3>
+                <Misc>
+                  <p><span className="label">Servings: </span>{recipe.servings}</p>
+                  <p><span className="label">Prep: </span>{recipe.prepTime} mins</p>
+                  <p><span className="label">Cook: </span>{recipe.cookTime} mins</p>
+                </Misc>
+              </Details>
             </RecipeContainer>
             <Steps>
               <Section>

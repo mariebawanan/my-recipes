@@ -26,6 +26,7 @@ const DateContainer = styled.div`
 
   ${media.medium`
     font-size: ${fontSizes.tiny}
+    flex-direction: column
   `}
 `
 
