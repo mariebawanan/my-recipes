@@ -18,7 +18,7 @@ const DateContainer = styled.div`
 `
 
 const Image = styled.img`
-  width: 380px;
+  width: 100%;
 `
 
 const DetailsContainer = styled.div`
@@ -48,7 +48,7 @@ const TimeDetails = styled.div`
 `
 const MainContainer = styled.div`
   display: grid
-  width: 380px;
+  width: 400px;
   .label {
     color: ${colors.grey}
     font-style: italic
