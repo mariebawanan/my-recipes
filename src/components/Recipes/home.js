@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Layout from '../Layout'
-import Recipe from './recipe'
+import RecipeItem from './recipeItem'
 import { getAllRecipes } from '../../queries'
 import styled from 'styled-components';
 import media from '../../styles/media'
@@ -36,7 +36,7 @@ class Home extends Component {
     this.setState({ recipes: res.data })
   };
 
-  displayRecipes = () => this.state.recipes && this.state.recipes.map(recipe => <Recipe recipe={recipe} key={recipe.uuid}/>)
+  displayRecipes = () => this.state.recipes && this.state.recipes.map(recipe => <RecipeItem recipe={recipe} key={recipe.uuid}/>)
   
 
   render() {
