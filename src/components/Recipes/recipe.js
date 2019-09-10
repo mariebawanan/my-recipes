@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { getRecipe } from '../../queries'
+import { getRecipe, getAllSpecials} from '../../queries'
 import mixins from '../../styles/mixins'
 import theme from '../../styles/theme'
 import media from '../../styles/media'
 import { Link } from 'react-router-dom'
 import bgBody from '../../assets/bg-body.jpg'
 
-const {colors}= theme
+const {colors, fontSizes}= theme
 
 const RecipeContainer = styled.div`
   display: grid
@@ -53,6 +53,7 @@ const BackButton = styled(Link)`
   padding: 1em
   font-size: 0.8em
 `
+
 const MainContainer = styled.div`
   display: grid
   grid-row-gap: 5rem
@@ -130,14 +131,33 @@ const Label = styled.div`
 const Section = styled.div` 
 `
 
+const SpecialsContainer = styled.div`
+
+font-size: ${fontSizes.tiny}
+  span:first-child {
+    ${mixins.header}
+    font-weight: bold
+  }
+  padding: 0.5em 0.5em 0
+  margin: 0.2em
+  border: dotted 1px ${colors.orange}
+`
+
 class Recipe extends Component {
 
   state = {
-    recipe: ''
+    recipe: '',
+    specials: []
   }
 
   componentDidMount() {
     this.getRecipe()
+    this.getSpecials()
+  }
+
+  getSpecials = async() => {
+    let res = await getAllSpecials()
+    this.setState({ specials: res.data })
   }
 
   getRecipe = async() => {
@@ -145,16 +165,30 @@ class Recipe extends Component {
     this.setState({ recipe: res.data })
   }
 
+  getMatchingSpecial = uuid => this.state.specials.filter(special => special.ingredientId === uuid);
+  
+  displayIngredients = ingredients => 
+    ingredients.map((ing, i) => {
+      const specials = this.getMatchingSpecial(ing.uuid);
+      return (
+        <>
+          <li key={i}>{`${ing.amount !== null ? ing.amount: ''} ${ing.measurement} ${ing.name}`} </li> 
+          {specials.length ? 
+            specials.map(special => 
+            <SpecialsContainer>
+              <span>{special.title} - {special.type}</span> <br />
+              <p dangerouslySetInnerHTML={{ __html: special.text }}></p>
+            </SpecialsContainer>)
+            : ""}
+        </>
+      )
+    }
+  )
 
-   displayIngredients = ingredients => 
-    ingredients.map((ing, i) => 
-      <li key={i}>{`${ing.amount} ${ing.measurement} ${ing.name}`} </li> 
-    )
-
-   displayDirections = directions => 
+  displayDirections = directions => 
     directions.map((dir, i) => 
       <li key={i}><span>{`${dir.optional ? '*Optional*': ''}`}</span> {dir.instructions}</li> 
-    )
+  )
 
   render() {
     const {recipe} = this.state;
@@ -192,6 +226,7 @@ class Recipe extends Component {
               </Section>
 
             </Steps>
+            <BackButton to="/">Back to home</BackButton>
           </MainContainer>
         }
       </div>

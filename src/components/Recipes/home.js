@@ -16,9 +16,6 @@ const RecipeListContainer = styled.div`
     grid-template-columns: 100%
     justify-content: center
   `}
-
-
-  
 `
 
 class Home extends Component {
