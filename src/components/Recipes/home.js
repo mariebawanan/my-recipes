@@ -5,7 +5,6 @@ import { getAllRecipes } from '../../queries'
 import styled from 'styled-components';
 import media from '../../styles/media'
 
-
 const RecipeListContainer = styled.div`
   display: grid;
   justify-items: center
@@ -35,15 +34,13 @@ class Home extends Component {
 
   displayRecipes = () => this.state.recipes && this.state.recipes.map(recipe => <RecipeItem recipe={recipe} key={recipe.uuid}/>)
   
-
   render() {
     return (
       <Layout>
           <RecipeListContainer>{this.displayRecipes()}</RecipeListContainer>
       </Layout>
     )
-  }
-      
+  }  
 }
 
 export default Home

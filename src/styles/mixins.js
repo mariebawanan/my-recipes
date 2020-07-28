@@ -1,6 +1,5 @@
 import { css } from 'styled-components';
 import theme from './theme'
-
 const { colors} = theme;
 
 const mixins = {
@@ -10,7 +9,6 @@ const mixins = {
   `,
 
   button: css`
-    
     background-color: ${colors.orange}
     text-transform: uppercase;
     font-size: 1.2em
@@ -31,7 +29,6 @@ const mixins = {
     color: ${colors.grey};
     font-style: italic;
   `
-
 }
 
 export default mixins;

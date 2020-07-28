@@ -82,6 +82,7 @@ const ViewButton = styled(Link)`
     margin-top: -25px
     margin-right: 40px
     justify-items: center
+    height: 25px
     
     ${media.medium`
       justify-self: center;

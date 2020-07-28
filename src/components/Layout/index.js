@@ -3,6 +3,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import styled from 'styled-components'
 import bgHero from '../../assets/bg-hero.jpeg'
+import GlobalStyle from '../../styles/GlobalStyle'
 
 const LayoutContainer = styled.div`
   &:before {
@@ -18,16 +19,18 @@ const LayoutContainer = styled.div`
     z-index: -2;
     opacity: 0.2
   }
-
 `
 
 const Layout = props => {
   return (
-    <LayoutContainer>
-      <Header />
-      <div>{props.children}</div>
-      <Footer />
-    </LayoutContainer>
+    <React.Fragment>
+      <GlobalStyle />
+      <LayoutContainer>
+        <Header />
+        <div>{props.children}</div>
+        <Footer />
+      </LayoutContainer>
+    </React.Fragment>
   )
 }
 
